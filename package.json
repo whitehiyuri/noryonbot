@@ -1,0 +1,8 @@
+{
+  "name": "noryonbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/pikokr/noryonbot.git",
+  "author": "pikokr <parangee9706@gmail.com>",
+  "license": "MIT"
+}
