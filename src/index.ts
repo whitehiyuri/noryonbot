@@ -1,30 +1,30 @@
-import { CommandClient } from "@pikostudio/command.ts";
-import { ShardingManager } from "discord.js";
+import { CommandClient } from '@pikostudio/command.ts'
+import { ShardingManager } from 'discord.js'
 
-const config = require("../config.json");
+const config = require('../config.json')
 
-declare module "discord.js" {
+declare module 'discord.js' {
   interface Client {
-    config: any;
+    config: any
   }
 }
 
 if (process.env.SHARDING_MANAGER) {
   const client = new CommandClient({
     watch: true,
-    owners: "auto",
+    owners: 'auto',
     commandHandler: {
       prefix: config.prefix,
     },
     currentDir: __dirname,
-  });
+  })
 
-  client.config = config;
-  client.login(config.token);
+  client.config = config
+  client.login(config.token)
 } else {
   const manager = new ShardingManager(__filename, {
-    execArgv: __filename.endsWith(".ts") ? ["-r", "ts-node/register"] : [],
+    execArgv: __filename.endsWith('.ts') ? ['-r', 'ts-node/register'] : [],
     token: config.token,
-  });
-  manager.spawn();
+  })
+  manager.spawn()
 }

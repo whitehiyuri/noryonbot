@@ -8,6 +8,7 @@
   "dependencies": {
     "@pikostudio/command.ts": "pikokr/command.ts",
     "discord.js": "^12.5.1",
+    "prettier": "^2.2.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
