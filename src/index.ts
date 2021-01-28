@@ -1,5 +1,4 @@
 import { CommandClient } from '@pikostudio/command.ts'
-import { ShardingManager } from 'discord.js'
 
 const config = require('../config.json')
 
@@ -9,22 +8,23 @@ declare module 'discord.js' {
   }
 }
 
-if (process.env.SHARDING_MANAGER) {
-  const client = new CommandClient({
-    watch: true,
-    owners: 'auto',
-    commandHandler: {
-      prefix: config.prefix,
-    },
-    currentDir: __dirname,
-  })
+const client = new CommandClient({
+  watch: true,
+  owners: 'auto',
+  commandHandler: {
+    prefix: config.prefix,
+  },
+  currentDir: __dirname,
+})
 
-  client.config = config
-  client.login(config.token)
-} else {
-  const manager = new ShardingManager(__filename, {
-    execArgv: __filename.endsWith('.ts') ? ['-r', 'ts-node/register'] : [],
-    token: config.token,
-  })
-  manager.spawn()
-}
+process.send =
+  process.send ||
+  function () {
+    return false
+  }
+
+client.config = config
+
+client.loadExtensions('extensions/general')
+
+client.login(config.token)
