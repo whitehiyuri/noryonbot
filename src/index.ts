@@ -1,4 +1,5 @@
 import { CommandClient } from '@pikostudio/command.ts'
+import Dokdo from 'dokdo'
 
 const config = require('../config.json')
 
@@ -7,7 +8,7 @@ declare module 'discord.js' {
     config: any
   }
 }
-
+const { Manager } = require("erela.js");
 const client = new CommandClient({
   watch: true,
   owners: config.owner,
@@ -24,7 +25,17 @@ process.send =
   }
 
 client.config = config
-
 client.loadExtensions('extensions/general')
+client.loadExtensions('extensions/music')
+client.music = 
+client.on("raw", (d) => client.music.updateVoiceState(d));
+
+client.once('ready', () => {
+  const dokdo = new Dokdo(client, {
+    noPerm: (msg) => msg.reply('권한 없음 ㅅㄱ'),
+    prefix: config.prefix,
+  })
+  client.on('message', (msg) => dokdo.run(msg))
+})
 
 client.login(config.token)

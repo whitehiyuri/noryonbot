@@ -50,10 +50,9 @@ export default class General extends Extension {
         const embed = new MessageEmbed()
         .setTitle("개발자 정보")
         .addField("운영자", this.client.users.cache.get("616570697875193866")?.tag)
-        .addField("개발자", `\`${this.client.users.cache.get('340373909339635725')?.tag}\`, \`${this.client.users.cache.get('627292715956043785')?.tag}\`, \`${this.client.users.cache.get('674877162557407242')?.tag}\``)
+        .addField("개발자", `\`${this.client.users.cache.get('340373909339635725')?.tag}\`, \`${this.client.users.cache.get('627292715956043785')?.tag}\`, \`${this.client.users.cache.get('674877162557407242')?.tag}\`, \`${this.client.users.cache.get('628595345798201355')?.tag}\``)
         msg.reply(embed)
         }
     
 
-    
 }

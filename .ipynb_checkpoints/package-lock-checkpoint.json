@@ -69,14 +69,6 @@
       "resolved": "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz",
       "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
     },
-    "axios": {
-      "version": "0.21.1",
-      "resolved": "https://registry.npmjs.org/axios/-/axios-0.21.1.tgz",
-      "integrity": "sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==",
-      "requires": {
-        "follow-redirects": "^1.10.0"
-      }
-    },
     "binary-extensions": {
       "version": "2.2.0",
       "resolved": "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.2.0.tgz",
@@ -139,14 +131,16 @@
       "integrity": "sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A=="
     },
     "discord.js": {
-      "version": "github:discordjs/discord.js#cee6cf70ce76e9b06dc7f25bfd77498e18d7c8d4",
-      "from": "github:discordjs/discord.js",
+      "version": "12.5.1",
+      "resolved": "https://registry.npmjs.org/discord.js/-/discord.js-12.5.1.tgz",
+      "integrity": "sha512-VwZkVaUAIOB9mKdca0I5MefPMTQJTNg0qdgi1huF3iwsFwJ0L5s/Y69AQe+iPmjuV6j9rtKoG0Ta0n9vgEIL6w==",
       "requires": {
         "@discordjs/collection": "^0.1.6",
         "@discordjs/form-data": "^3.0.1",
         "abort-controller": "^3.0.0",
         "node-fetch": "^2.6.1",
         "prism-media": "^1.2.2",
+        "setimmediate": "^1.0.5",
         "tweetnacl": "^1.0.3",
         "ws": "^7.3.1"
       }
@@ -157,16 +151,6 @@
       "requires": {
         "dayjs": "^1.9.6",
         "node-fetch": "^2.6.1"
-      }
-    },
-    "erela.js": {
-      "version": "2.3.2",
-      "resolved": "https://registry.npmjs.org/erela.js/-/erela.js-2.3.2.tgz",
-      "integrity": "sha512-HWNn171qizzE4cANntmDAhRQDSeN6UYxoRN6485b7HMA4azLZdOHu8GfHrbiJ9G2Im9lE2sOYXYOvltpm2Uq3w==",
-      "requires": {
-        "@discordjs/collection": "^0.1.6",
-        "axios": "^0.21.0",
-        "ws": "^7.3.1"
       }
     },
     "event-target-shim": {
@@ -181,11 +165,6 @@
       "requires": {
         "to-regex-range": "^5.0.1"
       }
-    },
-    "follow-redirects": {
-      "version": "1.13.2",
-      "resolved": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.2.tgz",
-      "integrity": "sha512-6mPTgLxYm3r6Bkkg0vNM0HTjfGrOEtsfbhagQvbxDEsEkpNhw582upBaoRZylzen6krEmxXJgt9Ju6HiI4O7BA=="
     },
     "fsevents": {
       "version": "2.3.1",
@@ -277,6 +256,11 @@
       "requires": {
         "picomatch": "^2.2.1"
       }
+    },
+    "setimmediate": {
+      "version": "1.0.5",
+      "resolved": "https://registry.npmjs.org/setimmediate/-/setimmediate-1.0.5.tgz",
+      "integrity": "sha1-KQy7Iy4waULX1+qbg3Mqt4VvgoU="
     },
     "source-map": {
       "version": "0.6.1",
