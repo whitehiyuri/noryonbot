@@ -52,7 +52,18 @@ export default class General extends Extension {
         .addField("운영자", this.client.users.cache.get("616570697875193866")?.tag)
         .addField("개발자", `\`${this.client.users.cache.get('340373909339635725')?.tag}\`, \`${this.client.users.cache.get('627292715956043785')?.tag}\`, \`${this.client.users.cache.get('674877162557407242')?.tag}\`, \`${this.client.users.cache.get('628595345798201355')?.tag}\``)
         msg.reply(embed)
-        }
+        
+    }
+      /* @Command({name: '음성말하기', aliases: ['tts']})
+        
+        tts(@Msg() msg: Message, @Arg({rest: true}) query: string) {
+            const broadcast = this.client.voice.createBroadcast();
+      //  msg.member.voice.channel.join().play(broadcast.play(`https://www.google.com/speech-api/v1/synthesize?text=${query}&lang=ko-KR&speed=0.4`))
+           
+        
+       }
+    */    
     
+
 
 }
