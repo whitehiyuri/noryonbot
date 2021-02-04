@@ -1,7 +1,7 @@
 {
-  "token": "NjkyMjk0OTMwNDE2MTQwMzA4.Xnsb5Q.MLmB42gAdKP5tU6_MDxS5G481cU",
-  "prefix": "n!",
-  "owner": "616570697875193866",
+  "token": "token",
+  "prefix": "prefix",
+  "owner": "ID",
   "dev": ["628595345798201355", "340373909339635725","627292715956043785","674877162557407242","628595345798201355"],
   "nodes": [
       {"host": "localhost", 
