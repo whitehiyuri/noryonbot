@@ -54,15 +54,16 @@ export default class General extends Extension {
         msg.reply(embed)
         
     }
-      /* @Command({name: '음성말하기', aliases: ['tts']})
-        
-        tts(@Msg() msg: Message, @Arg({rest: true}) query: string) {
-            const broadcast = this.client.voice.createBroadcast();
-      //  msg.member.voice.channel.join().play(broadcast.play(`https://www.google.com/speech-api/v1/synthesize?text=${query}&lang=ko-KR&speed=0.4`))
-           
-        
-       }
-    */    
+
+    @Command({name: '서포트', aliases: ['support']})
+    support(@Msg() msg: Message) {
+        const embed = new MessageEmbed()
+        .setTitle("서포트")
+        .setDescription("[클릭/터치](https://alphakr.xyz/discord)")
+        .setFooter(msg.author.tag,msg.author.displayAvatarURL())
+        .setThumbnail("https://alphakr.xyz/public/static/img/logo.png")
+        msg.channel.send(embed)
+    }
     
 
 

@@ -14,25 +14,27 @@ export default class Music extends Extension {
             textChannel: msg.channel.id,
             voiceChannel: msg.member.voice.channelID
         })
-        
+       
         if (!msg.member!.voice!.channel!.permissionsFor(msg.guild!.me!).has('CONNECT')) return msg.reply("음성채널에 참여할 권한이 없어서 재생할수없어여")
         if (!msg.member!.voice!.channel!.permissionsFor(msg.guild!.me!).has('SPEAK')) return msg.reply("음성채널에서 말할 권한이없어서 재생할수없어여")
+        
+        
         const data = await this.client.music.search(query)
         if (data.tracks[0]) {
             player.queue.add(data.tracks[0])
             player.connect()
             if (!player.playing) player.play()
             
+         return msg.reply(`다음[\`${data.tracks[0].title}\`] 음악을 추가를 완료했어요`)
         }
     }
-   
     
      @Command({name: '현재재생', aliases: ['np']})
     async np(@Msg() msg: Message) {
         const player = this.client.music.players.get(msg.guild!.id)!
         const embed = new MessageEmbed()
         .setTitle("현재 재생중")
-        .setDescription(player.queue.current!.title)
+        .setDescription(player.queue.current!.title+`\n시간: ${require('moment')(player.queue.current!.duration).format("HH시간 mm분 ss초")}`)
         .setThumbnail(player.queue.current!.displayThumbnail!('maxresdefault'))
         .setURL(player.queue.current!.uri!)
         msg.reply(embed)
