@@ -1,17 +1,17 @@
 import { CommandClient } from '@pikostudio/command.ts'
 import Dokdo from 'dokdo'
-import {Manager} from 'erela.js'
-import {TextChannel} from 'discord.js'
-
+import { Manager } from 'erela.js'
+import { TextChannel } from 'discord.js'
+import 'prisma'
+import { MessageEmbed } from 'discord.js'
 const config = require('../config.json')
 //const { Manager } = require("erela.js");
 declare module 'discord.js' {
   interface Client {
     config: any
-      music: Manager
+    music: Manager
   }
 }
-
 
 
 const client = new CommandClient({
@@ -42,15 +42,15 @@ client.music = new Manager({
       port: 2333, // Optional if Lavalink is set to default
       password: "youshallnotpass", // Optional if Lavalink is set to default
     }],
-      send(id, payload) {
+  send(id, payload) {
     const guild = client.guilds.cache.get(id);
     if (guild) guild.shard.send(payload);
-      }
+  }
 })
-.on("nodeConnect", node => console.log(`Node ${node.options.identifier} connected`))
+  .on("nodeConnect", node => console.log(`Node ${node.options.identifier} connected`))
   .on("nodeError", (node, error) => console.log(`Node ${node.options.identifier} had an error: ${error.message}`))
   .on("trackStart", (player, track) => {
-    (client.channels.cache.get(player.textChannel!) as TextChannel)?.send(`<a:yes:753994796363939881>재생을 시작합니다: ${track.title}`);
+    (client.channels.cache.get(player.textChannel!) as TextChannel)?.send(new MessageEmbed().setTitle("<a:yes:753994796363939881> 노래를 재생을 시작합니다").setDescription(`**제목:** \`${track.title}\`\n**시간:** \`${require("moment")(track.duration).format("HH시간 mm분 ss초")}\``).setThumbnail(track.displayThumbnail("default")).setURL(track.uri));
   })
   .on("queueEnd", (player) => {
     (client.channels.cache.get(player.textChannel!) as TextChannel)?.send("음악이 종료되었어요!");
@@ -59,15 +59,16 @@ client.music = new Manager({
   });
 
 client.on('raw', payload => client.music.updateVoiceState(payload))
-    
+
 
 client.once('ready', () => {
   const dokdo = new Dokdo(client, {
     noPerm: (msg) => msg.reply('권한 없음 ㅅㄱ'),
     prefix: config.prefix,
-      owners: [...config.dev, config.owner]
+    owners: [...config.dev, config.owner]
   })
- console.log("ONLINE!")
+  console.log("ONLINE!")
+
   client.on('message', (msg) => dokdo.run(msg))
 })
 

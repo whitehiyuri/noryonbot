@@ -117,3 +117,5 @@ dist
 
 config.json
 package-lock.json
+
+prisma/data.db

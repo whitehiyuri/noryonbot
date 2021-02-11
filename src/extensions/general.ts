@@ -26,10 +26,11 @@ export default class General extends Extension {
     
     @Command({name: '핑', aliases:['ping'] })
     ping(@Msg() msg: Message) {
+      const dt = new Date(msg.createdTimestamp);
        //const m = this.client.channels.cache.get('733958435091251254')?.send("ping up!")
         const embed = new MessageEmbed()
         .setTitle("핑")
-        .setDescription(`**🏓웹소켓:** ${this.client.ws.ping}ms\n**📩메시지: PONG! **`)
+        .setDescription(`**🏓웹소켓:** \`${this.client.ws.ping}ms\`\n**📩메시지:** \`${dt.getDate()}ms\``)
         .setThumbnail("https://cdn.discordapp.com/attachments/692682565353734174/777507000233754644/ping.png")
  
       msg.channel.send(embed)
