@@ -1,0 +1,15 @@
+{
+    "token": "토큰",
+    "prefix": "n!",
+    "owner": "",
+    "dev": [
+        ""
+    ],
+    "nodes": [
+        {
+            "host": "호스트주소 or localhost",
+            "port": 2333,
+            "password": "비밀번호"
+        }
+    ]
+}
