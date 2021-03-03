@@ -1,4 +1,5 @@
 import { Command, Extension, Msg, Listener, Arg } from '@pikostudio/command.ts'
+import { TextChannel } from 'discord.js'
 import { MessageEmbed } from 'discord.js'
 import { Message } from 'discord.js'
 
@@ -8,18 +9,18 @@ export default class Manage extends Extension {
     clear(@Msg() msg: Message, @Arg({rest: true}) query: string){
         const embed = new MessageEmbed()
         .setTitle("지우기")
-        .setDescription("다음으로 적은 메시지 수를 잠시후 제거합니다")
+        .setDescription(`${query}개 메시지를 제거합니다`)
         .setFooter("Team Alpha by 놀욘#0123", "https://cdn.discordapp.com/avatars/756849125844058172/4c232864fd92a8955f619ef1c9c62879.webp")
-        
-        
-       // if(!query / Number) return msg.reply("숫자만 가능.")
-   //     if (!msg.guild.me.hasPermission('ADMINISTRATOR')) return msg.reply("권한에서 문제가 발생하였습니다: 메시지 관리가 없어 지울수없습니다")
-     //  if (!msg.member.hasPermission("ADMINISTRATOR")) return msg.reply("ㅅㄱ 권한없어 일.반.유.저 권한은 이용할수없는 접근입니다")
-        
-        
-        msg.channel.send('제작중이며, 지금은 사용하실수없습니다', embed)
-        
-        //msg.channel.bulkDelete(query)
+        if(!query) return msg.channel.send("제거할 메시지수를 적어주세요")
+        if(isNaN(Number(query))) return msg.channel.send("숫자만 적어주세요")
+        if(!msg.member?.permissions.has("MANAGE_MESSAGES")) return msg.reply("거기 유저분! `[ 메시지 관리 ]` 권한이 없는데 다시 확인해주실래요?")
+        if(!msg.guild?.me?.permissions.has("MANAGE_MESSAGES")) return msg.reply("제가 권한이없는데요.. `[ 메시지 관리 ]` 권한이 있는지 확인을 해주세요.")
+        msg.channel.send(embed).then(x=> setTimeout(()=> {x.delete()},1000))
+        msg.delete()
+
+        ;(msg.channel as TextChannel).bulkDelete(Number(query))
+msg.reply(`${query}개 메시지를 제거했습니다`)        
+      
 
         
     }

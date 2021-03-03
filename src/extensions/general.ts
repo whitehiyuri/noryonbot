@@ -1,4 +1,4 @@
-import { Command, Extension, Msg } from '@pikostudio/command.ts'
+import { Command, Extension, Msg, Arg } from '@pikostudio/command.ts'
 import { MessageEmbed } from 'discord.js'
 import { Message } from 'discord.js'
 
@@ -30,7 +30,7 @@ export default class General extends Extension {
        //const m = this.client.channels.cache.get('733958435091251254')?.send("ping up!")
         const embed = new MessageEmbed()
         .setTitle("핑")
-        .setDescription(`**🏓웹소켓:** \`${this.client.ws.ping}ms\`\n**📩메시지:** \`${dt.getDate()}ms\``)
+        .setDescription(`**🏓웹소켓:** \`${this.client.ws.ping}ms\``)
         .setThumbnail("https://cdn.discordapp.com/attachments/692682565353734174/777507000233754644/ping.png")
  
       msg.channel.send(embed)
@@ -47,7 +47,7 @@ export default class General extends Extension {
     @Command({name: '개발자', aliases: ['dev'] })
     dev(@Msg() msg: Message) {
      
-        const d = {"dev": ["340373909339635725","627292715956043785","674877162557407242"]}
+    
         const embed = new MessageEmbed()
         .setTitle("개발자 정보")
         .addField("운영자", this.client.users.cache.get("616570697875193866")?.tag)
@@ -65,7 +65,13 @@ export default class General extends Extension {
         .setThumbnail("https://alphakr.xyz/public/static/img/logo.png")
         msg.channel.send(embed)
     }
-    
+
+    @Command({name: '말', aliases: ['say']})
+    async say(@Msg() msg: Message, @Arg({rest: true}) query: string){
+const config = require("../../config.json")
+      const args = msg.content.split(" ").slice(1)
+      msg.channel.send(args.join(" "))
+    }
 
 
 }

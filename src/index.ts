@@ -63,7 +63,7 @@ client.on('raw', payload => client.music.updateVoiceState(payload))
 
 client.once('ready', () => {
   const dokdo = new Dokdo(client, {
-    noPerm: (msg) => msg.reply('권한 없음 ㅅㄱ'),
+    noPerm: (msg) => msg.reply('권한 없으므로 돌아가세요..'),
     prefix: config.prefix,
     owners: [...config.dev, config.owner]
   })
