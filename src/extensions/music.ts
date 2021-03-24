@@ -34,7 +34,7 @@ export default class Music extends Extension {
         if (!player.playing) return msg.channel.send("죄송합니다만.. 음악을 틀고 하셨나요?")
         const embed = new MessageEmbed()
             .setTitle("현재 재생중")
-            .setDescription(player.queue.current!.title + `\n시간: ${require('moment')(player.queue.current!.duration).format("HH시간 mm분 ss초")}`)
+            .setDescription(`\`\`\`${player.queue.current!.title}\`\`\`` + `\n시간: ${require('moment')(player.queue.current!.duration).format("HH시간 mm분 ss초")}`)
             .setThumbnail(player.queue.current!.displayThumbnail!('maxresdefault'))
             .setURL(player.queue.current!.uri!)
         msg.reply(embed)
@@ -69,14 +69,36 @@ export default class Music extends Extension {
         const player = this.client.music.players.get(msg.guild!.id)!
 
 
-        if (!query) return msg.reply(`\`1. <재생목록[허용/비허용]>\n2. <곡반복[허용/비허용]>\`\n 재생목록 반복: ${player.queueRepeat ? '허용' : '비허용'}\n곡 반복: ${player.trackRepeat ? '허용' : '비허용'}`)
+        if (!query) return msg.reply(`\`1. 재생목록(허용/비허용)\n2. 곡반복(허용/비허용)\n3. 끄기 - 반복모드를 끕니다\`\n 재생목록 반복: ${player.queueRepeat ? '허용' : '비허용'}\n곡 반복: ${player.trackRepeat ? '허용' : '비허용'}`)
         if (query == '재생목록허용') return msg.reply("재생목록 반복을 켜짐으로 설정합니다"), player.setQueueRepeat(true)
         if (query == '재생목록비허용') return msg.reply("재생목록 반복을 꺼짐으로 설정합니다"), player.setQueueRepeat(false)
         if (query == '곡반복허용') return msg.reply("곡반복을 켜짐으로 설정합니다."), player.setTrackRepeat(true)
         if (query == '곡반복비허용') return msg.reply("곡반복을 꺼짐으로 설정합니다."), player.setTrackRepeat(false)
+        if (query == '끄기') return msg.reply(`모든 반복모드를 꺼짐으로 설정합니다.\n\n**재생목록 상태**\n재생목록 반복: ${player.queueRepeat ? '허용' : '비허용'}\n곡 반복: ${player.trackRepeat ? '허용' : '비허용'}`), player.setTrackRepeat(false), player.setQueueRepeat(false)
+        }
 
+        @Command({name: '재생목록', aliases: ['queue', 'q']})
+        async queue(@Msg() msg: Message) {
+            const player = this.client.music.players.get(msg.guild!.id)!
+                  msg.channel.send(`\`\`\`\n${player.queue.map((x, i)=> 1+i++ + `. ` + x.title + "[ " + x.requester + " ]").join("\n")} \`\`\` \n\`${player.queue.current!.title}\`를 재생중..`)
+        }
+        
+        @Command({name: '일시정지', aliases: ['pause']})
+        pause(@Msg() msg: Message) {
+            const player = this.client.music.players.get(msg.guild!.id)!
+            player.pause(true)
+                  msg.channel.send(`일시정지 되었습니다`)
+            
+        }
+        
+        @Command({name: '재개', aliases: ['resume']})
+        resume(@Msg() msg: Message) {
+        const player = this.client.music.players.get(msg.guild!.id)!
+        player.pause(false)
+              msg.channel.send("음악이 재개되었습니다")
+        
+        }
 
-    }
     @Listener('ready')
     raw() {
         this.client.music.init(this.client.user!.id)

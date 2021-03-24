@@ -1,9 +1,10 @@
-import { CommandClient } from '@pikostudio/command.ts'
+import { CommandClient, Msg } from '@pikostudio/command.ts'
 import Dokdo from 'dokdo'
 import { Manager } from 'erela.js'
-import { TextChannel } from 'discord.js'
+import { TextChannel, VoiceChannel } from 'discord.js'
 import 'prisma'
 import { MessageEmbed } from 'discord.js'
+
 const config = require('../config.json')
 //const { Manager } = require("erela.js");
 declare module 'discord.js' {
@@ -33,14 +34,15 @@ client.config = config
 client.loadExtensions('extensions/general')
 client.loadExtensions('extensions/music')
 client.loadExtensions('extensions/manage')
+client.loadExtensions('extensions/info')
 client.music = new Manager({
   // Pass an array of node. Note: You do not need to pass any if you are using the default values (ones shown below).
   nodes: [
     // If you pass a object like so the "host" property is required
     {
-      host: "localhost", // Optional if Lavalink is local
-      port: 2333, // Optional if Lavalink is set to default
-      password: "youshallnotpass", // Optional if Lavalink is set to default
+      host: "localhost",
+      port: 2333,
+      password: 'youshallnotpass'
     }],
   send(id, payload) {
     const guild = client.guilds.cache.get(id);
@@ -68,8 +70,14 @@ client.once('ready', () => {
     owners: [...config.dev, config.owner]
   })
   console.log("ONLINE!")
+client.user?.setActivity("n! | 놀욘봇은 유저분들을 사랑한답니다")
 
-  client.on('message', (msg) => dokdo.run(msg))
+
+  client.on('message', (msg) => {
+    dokdo.run(msg)
+  })
+
+
 })
 
 client.login(config.token)

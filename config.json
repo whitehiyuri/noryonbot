@@ -1,15 +1,15 @@
 {
-    "token": "토큰",
+    "token": "ODE3MDU5MzU0NzQyMDk1ODky.YED_0g.T2raAyutNuKOGHfBEst_kW9AwBY",
     "prefix": "n!",
-    "owner": "",
+    "owner": "616570697875193866",
     "dev": [
-        ""
+        "461495816142716928"
     ],
-    "nodes": [
+    "lava": [
         {
-            "host": "호스트주소 or localhost",
+            "host": "localhost",
             "port": 2333,
-            "password": "비밀번호"
+            "password": "youshallnotpass"
         }
     ]
 }
