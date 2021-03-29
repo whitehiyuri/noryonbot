@@ -85,11 +85,10 @@ embed.setColor("GREEN")
 uptime(@Msg() msg: Message) {
   const moment = require("moment");
   require("moment-duration-format");
-const duration = moment.duration(this.client.uptime).format("현재까지는 `D[일] H[시간] m[분] s[초]`동안 켜져있었습니다");
+const duration = moment.duration(this.client.uptime).format("현재동안`D[일] H[시간] m[분] s[초]`동안 켜져있었습니다");
   
-const server_uptime = moment.duration(process.uptime()).format("현재까지는 `D[일] H[시간] m[분] s[초]`동안 켜져있었습니다");
-  
-msg.channel.send(new MessageEmbed().setTitle("업타임").setDescription(`**디스코드 봇:** ${duration}\n\n**서버 컴퓨터:** ${server_uptime}`))
+
+msg.channel.send(new MessageEmbed().setTitle("업타임").setDescription(`봇이 ${duration}`))
 }
 
 }

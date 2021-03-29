@@ -5,6 +5,15 @@ import { TextChannel, VoiceChannel } from 'discord.js'
 import 'prisma'
 import { MessageEmbed } from 'discord.js'
 
+
+
+
+
+
+
+
+
+
 const config = require('../config.json')
 //const { Manager } = require("erela.js");
 declare module 'discord.js' {
@@ -52,7 +61,11 @@ client.music = new Manager({
   .on("nodeConnect", node => console.log(`Node ${node.options.identifier} connected`))
   .on("nodeError", (node, error) => console.log(`Node ${node.options.identifier} had an error: ${error.message}`))
   .on("trackStart", (player, track) => {
-    (client.channels.cache.get(player.textChannel!) as TextChannel)?.send(new MessageEmbed().setTitle("<a:yes:753994796363939881> 노래를 재생을 시작합니다").setDescription(`**제목:** \`${track.title}\`\n**시간:** \`${require("moment")(track.duration).format("HH시간 mm분 ss초")}\``).setThumbnail(track.displayThumbnail("default")).setURL(track.uri));
+    const moment = require("moment")
+    require("moment-duration-format");
+      const duration = moment.duration(track.duration).format("`D[일] H[시간] m[분] s[초]`");
+        
+    (client.channels.cache.get(player.textChannel!) as TextChannel)?.send(new MessageEmbed().setTitle("<a:yes:753994796363939881> 노래를 재생을 시작합니다").setDescription(`**제목:** \`${track.title}\`\n**시간:** \`${duration}\``).setThumbnail(track.displayThumbnail("default")).setURL(track.uri));
   })
   .on("queueEnd", (player) => {
     (client.channels.cache.get(player.textChannel!) as TextChannel)?.send("음악이 종료되었어요!");
@@ -69,6 +82,7 @@ client.once('ready', () => {
     prefix: config.prefix,
     owners: [...config.dev, config.owner]
   })
+ //update(client.guilds?.cache.size)
   console.log("ONLINE!")
 client.user?.setActivity("n! | 놀욘봇은 유저분들을 사랑한답니다")
 
