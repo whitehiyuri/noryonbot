@@ -79,7 +79,7 @@ embed.setColor("GREEN")
 
     msg.channel.send("건의를 전송하였습니다")
     const d = 0;
-    (this.client.users.cache.get("616570697875193866") as unknown as TextChannel)?.send(embed)
+    (this.client.channels.cache.get("816982707074105386") as unknown as TextChannel)?.send("<@616570697875193866>",embed)
   }
     
     @Command({name: '업타임',aliases: ['uptime']})
