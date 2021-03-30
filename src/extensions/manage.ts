@@ -25,4 +25,16 @@ msg.reply(`${query}개 메시지를 제거했습니다`)
         
     }
 
+
+    @Command({name: '슬로우모드', aliases: ['slowmode']})
+    slowmode(@Msg() msg: Message, @Arg({rest: true}) query: string) {
+        if(!query) return msg.reply("적어주세요")
+    if(isNaN(Number(query))) return msg.channel.send("숫자만 적어주십시오")
+     const d = 0;
+(msg.channel as TextChannel).setRateLimitPerUser(Number(query))
+msg.channel.send(`슬로우모드를 \`${query}\`로 설정했습니다`)
+    }
+
+
+
 }

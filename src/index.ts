@@ -2,7 +2,7 @@ import { CommandClient, Msg } from '@pikostudio/command.ts'
 import Dokdo from 'dokdo'
 import { Manager } from 'erela.js'
 import { TextChannel, VoiceChannel } from 'discord.js'
-import 'prisma'
+import 'prisma'//DB할수없다.. 망할
 import { MessageEmbed } from 'discord.js'
 
 
@@ -43,6 +43,7 @@ client.config = config
 client.loadExtensions('extensions/general')
 client.loadExtensions('extensions/music')
 client.loadExtensions('extensions/manage')
+client.loadExtensions('extensions/dev')
 client.loadExtensions('extensions/info')
 client.music = new Manager({
   // Pass an array of node. Note: You do not need to pass any if you are using the default values (ones shown below).

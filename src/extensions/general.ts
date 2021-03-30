@@ -78,17 +78,19 @@ embed.setColor("GREEN")
       .setFooter(msg.author.tag, msg.author.displayAvatarURL())
 
     msg.channel.send("건의를 전송하였습니다")
-   // this.client.users.cache.get("616570697875193866")?.send(embed)
+    const d = 0;
+    (this.client.users.cache.get("616570697875193866") as unknown as TextChannel)?.send(embed)
   }
     
     @Command({name: '업타임',aliases: ['uptime']})
 uptime(@Msg() msg: Message) {
   const moment = require("moment");
   require("moment-duration-format");
+  
 const duration = moment.duration(this.client.uptime).format("현재동안`D[일] H[시간] m[분] s[초]`동안 켜져있었습니다");
   
 
-msg.channel.send(new MessageEmbed().setTitle("업타임").setDescription(`봇이 ${duration}`))
+msg.channel.send(new MessageEmbed().setTitle("업타임").setDescription(`봇이 ${duration}`).setThumbnail("https://cdn.discordapp.com/attachments/733958435091251254/826403382713253918/8d43f4bb2e851cbe.png"))
 }
 
 }
