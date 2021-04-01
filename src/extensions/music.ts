@@ -101,7 +101,7 @@ export default class Music extends Extension {
         pause(@Msg() msg: Message) {
             if (!msg.member?.voice?.channelID) return msg.reply('음성채널에 들어가주세여')
             const player = this.client.music.players.get(msg.guild!.id)!
-            if (!player.playing) return msg.channel.send("죄송합니다만.. 음악을 틀고 하셨나요?")
+            //if (!player) return msg.channel.send("죄송합니다만.. 음악을 틀고 하셨나요?")
             player.pause(true)
                   msg.channel.send(`일시정지 되었습니다`)
             

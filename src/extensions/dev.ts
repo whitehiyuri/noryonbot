@@ -18,4 +18,7 @@ reply(@Msg() msg: Message, @Arg({rest: true})query: string){
     (this.client.users.cache.get(args[0]) as unknown as TextChannel)?.send(`\`[관리자ㅣ${msg.author.tag}]\` ${args.slice(1).join(' ')}`).catch(err => msg.channel.send(`에러가 났습니다\n\`${err}\``))
     msg.channel.send("답장을 보냈습니다")
 }
+
+
+
 }

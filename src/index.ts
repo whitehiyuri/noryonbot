@@ -69,14 +69,14 @@ client.music = new Manager({
     (client.channels.cache.get(player.textChannel!) as TextChannel)?.send(new MessageEmbed().setTitle("<a:yes:753994796363939881> 노래를 재생을 시작합니다").setDescription(`**제목:** \`${track.title}\`\n**시간:** \`${duration}\``).setThumbnail(track.displayThumbnail("default")).setURL(track.uri));
   })
   .on("queueEnd", (player) => {
-    (client.channels.cache.get(player.textChannel!) as TextChannel)?.send("음악이 종료되었어요!");
+    (client.channels.cache.get(player.textChannel!) as TextChannel)?.send(new MessageEmbed().setTitle("음악이 종료되었습니다").setDescription("종료되어 채널을 나갔어요"));
 
     player.destroy();
   });
 
 client.on('raw', payload => client.music.updateVoiceState(payload))
-
-
+const a = 0;
+client.once("error", err=> (client.channels?.cache.get("826704542208098334") as TextChannel).send(new MessageEmbed().setTitle("에러").setDescription(err).setColor("RED")))
 client.once('ready', () => {
   const dokdo = new Dokdo(client, {
     noPerm: (msg) => msg.reply('권한 없으므로 돌아가세요..'),

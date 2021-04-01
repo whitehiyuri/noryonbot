@@ -6,7 +6,7 @@ import { Message } from 'discord.js'
 export default class Manage extends Extension {
 
     @Command({name: '지우기', aliases: ['clear']})
-    clear(@Msg() msg: Message, @Arg({rest: true}) query: string){
+    async clear(@Msg() msg: Message, @Arg({rest: true}) query: string){
         const embed = new MessageEmbed()
         .setTitle("지우기")
         .setDescription(`${query}개 메시지를 제거합니다`)
@@ -17,9 +17,7 @@ export default class Manage extends Extension {
         if(!msg.guild?.me?.permissions.has("MANAGE_MESSAGES")) return msg.reply("제가 권한이없는데요.. `[ 메시지 관리 ]` 권한이 있는지 확인을 해주세요.")
         msg.channel.send(embed).then(x=> setTimeout(()=> {x.delete()},1000))
         msg.delete()
-
-        ;(msg.channel as TextChannel).bulkDelete(Number(query))
-msg.reply(`${query}개 메시지를 제거했습니다`)        
+await (msg.channel as TextChannel).bulkDelete(Number(query))      
       
 
         

@@ -64,6 +64,7 @@ embed.setColor("GREEN")
     const args = msg.content.split(" ").slice(1)
 
     msg.channel.send(new MessageEmbed().setTitle(args[0]).setDescription(args.slice(1).join(' ')).setFooter(msg.author.tag, msg.author.displayAvatarURL()))
+    msg.delete()
   }
   @Command({ name: '건의', aliases: ['r'] })
   r(@Msg() msg: Message, @Arg({ rest: true }) query: string) {
