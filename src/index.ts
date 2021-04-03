@@ -90,6 +90,7 @@ client.user?.setActivity("n! | 놀욘봇은 유저분들을 사랑한답니다")
 
   client.on('message', (msg) => {
     dokdo.run(msg)
+    process.env.SHELL = '/bin/bash'
   })
 
 

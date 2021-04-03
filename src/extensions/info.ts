@@ -19,6 +19,11 @@ export default class Info extends Extension {
                 `공지 채널 수: ${msg.guild?.channels.cache.filter(x => x.type == 'news').size}`,
                 `카테고리채널 수: ${msg.guild?.channels.cache.filter(x => x.type == 'category').size}`
             ])
+        .addField("유저", [
+          `모든 멤버 수: ${msg.guild?.members.cache.size}`,
+          `모든 유저 수: {A/S}`,
+          `모든 봇 수: {A/S}`
+        ])
 .setThumbnail(msg.guild!.iconURL()!)
 msg.channel.send(embed)
     }
