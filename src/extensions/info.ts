@@ -39,4 +39,25 @@ msg.channel.send(embed)
         msg.reply(embed)
 
     }
+
+
+    @Command({name: "프로필", aliases: ['profile']})
+    profile(@Msg() msg: Message, @Arg({rest: true}) query: string) {
+        const args = query.split(" ").slice(1)
+
+       
+        if(!query) {
+            const embed = new MessageEmbed()
+            .setTitle(`프로필`)
+            .setImage(msg.author.displayAvatarURL({dynamic: true, size: 1024}))
+            return msg.channel.send(embed)}
+
+            if(query) {
+                const fembed = new MessageEmbed()
+                .setTitle(`${this.client.users.cache.get(`${query}`)?.username}의 프로필`)
+                .setImage(`${this.client.users.cache.get(`${query}`)?.displayAvatarURL({dynamic: true, size: 1024})}`)
+                 return msg.channel.send(fembed)
+             }
+
+    }
 }
